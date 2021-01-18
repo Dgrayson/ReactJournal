@@ -1,0 +1,31 @@
+.Form{
+    text-align: center;
+    font-size: 2em;
+    width: 75%; 
+    margin: auto; 
+    border: 3px lightblue solid;
+    border-radius: 5px;
+    padding: 20px; 
+}
+
+.home{
+    text-align: center; 
+}
+
+#addButton{
+    width: 50%;
+}
+
+.entry{
+    text-align: center; 
+    border: 3px solid #3E8989;; 
+    border-radius: 3px;
+    width: 75%;
+    margin: auto; 
+    background-color: #3E8989;
+}
+
+p{
+    font-size: 22pt;
+    text-align: left;
+}
