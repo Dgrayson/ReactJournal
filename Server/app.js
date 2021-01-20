@@ -52,13 +52,14 @@ connection.connect(function(err){
   console.log('connection*******'); 
 }); 
 
-connection.query('SELECT * FROM entry', function (err, rows, fields){
+/*
+connection.query('SELECT * FROM entries', function (err, rows, fields){
   
   if(err)
     console.log(err); 
 
   console.log(rows); 
 }); 
-
+*/
 
 module.exports = app;

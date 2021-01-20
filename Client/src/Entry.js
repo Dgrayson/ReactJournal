@@ -9,7 +9,7 @@ class Entry extends Component {
         super(props);
 
         this.state = {
-            entry: {title: "title1", description: "Early on, most Western accounts of all this had a heavy subtext of “Isn’t Japan wacky?” This tone has slowly given way to a realization that the country’s experience might be less a curiosity than a cautionary tale. Dismal employment prospects played an initial role in driving many men to solitary pursuits—but the culture has since moved to accommodate and even encourage those pursuits. Roland Kelts, a Japanese American writer and longtime Tokyo resident, has described “a generation that found the imperfect or just unexpected demands of real-world relationships with women less enticing than the lure of the virtual libido.”"},
+            entry: {title: "", description: ""},
             edit: false, 
             home: false, 
         }
@@ -42,7 +42,6 @@ class Entry extends Component {
             return <Redirect to="/Home" />
         else{
             return (
-                <div className="entryBackground">
                 <div className="entry">
                     <h1>{entry.title}</h1>
                     
@@ -57,7 +56,6 @@ class Entry extends Component {
                     <Button variant="primary" onClick={this.handleOnClick} name="back">
                         Back
                     </Button>
-                </div>
                 </div>
             );
         }

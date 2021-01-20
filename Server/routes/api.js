@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 
     console.log("hello world"); 
 
-    connection.query('SELECT * FROM entry', function (err, rows, fields){
+    connection.query('SELECT * FROM entries', function (err, rows, fields){
   
         if(err)
           console.log(err); 

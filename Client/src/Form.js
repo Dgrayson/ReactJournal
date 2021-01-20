@@ -7,16 +7,25 @@ class NewEntry extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { entry: {}, submitted: false , goBack: false};
+    this.state = { title: "", description: "", submitted: false , goBack: false};
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this); 
+    this.handleTitleChange = this.handleTitleChange(this); 
+    this.handleDescriptionChange = this.handleDescriptionChange(this); 
+  }
+
+  handleTitleChange(e){
+
+  }
+
+  handleDescriptionChange(e){
 
   }
 
   checkProps(newProps){
 
-    console.log(newProps.location.entry); 
+    console.log(newProps.location.title); 
     if(null != newProps)  
       this.setState({entry: newProps}); 
   }
@@ -44,7 +53,7 @@ class NewEntry extends Component {
         <Form.Group>
           <Form.Label inline>Title
           </Form.Label>
-          <Form.Control as="input" inline defaultValue={this.state.entry.title}></Form.Control>
+          <Form.Control as="input" inline defaultValue={this.state.title}></Form.Control>
         </Form.Group>
         <Form.Group>
           <Form.Label>
@@ -52,7 +61,7 @@ class NewEntry extends Component {
 
             
           </Form.Label>
-          <Form.Control as="textarea" rows="5" defaultValue={this.state.entry.description}></Form.Control>
+          <Form.Control as="textarea" rows="5" defaultValue={this.state.description} onChange={this.handleDescriptionChange}></Form.Control>
         </Form.Group>
         <input className = "btn btn-primary" type="submit" value="Submit" />
         <Button onClick={this.handleOnClick}>Go Back</Button>

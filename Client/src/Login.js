@@ -6,7 +6,7 @@ import {
     Route,
     Link, Redirect
 } from "react-router-dom";
-import "./Login.css"; 
+import "./Style.css"; 
 
 class Login extends Component {
 
@@ -31,25 +31,31 @@ class Login extends Component {
         }
 
         return (
-            <div className="Login">
-                <form onSubmit={this.handleSubmit}>
-                    <FormGroup controlId="Email" bsSize="Large">
-                        <FormLabel>Email</FormLabel>
-                        <FormControl
-                            autoFocus   
-                            type="Email"
-                        />
-                    </FormGroup>
-                    <FormGroup controlId="Password">
-                        <FormLabel>Password</FormLabel>
-                        <FormControl
-                            type="password"
-                        />
-                    </FormGroup>
-                    <Button bsSize="large" type="submit" block>
-                        Login
-                    </Button>
-                </form>
+            <div className = "login-flex" >
+                <div className="Login">
+                    <form onSubmit={this.handleSubmit}>
+                        <FormGroup controlId="Email" bsSize="Large">
+                            <FormLabel><span>Email</span></FormLabel>
+                            <FormControl
+                                autoFocus   
+                                type="Email"
+                            />
+                        </FormGroup>
+                        <FormGroup controlId="Password">
+                            <FormLabel>Password</FormLabel>
+                            <FormControl
+                                type="password"
+                            />
+                        </FormGroup>
+                        <Button bsSize="large" type="submit" block>
+                            Login
+                        </Button>
+
+                        <Button bsSize="large" type="submit" block>
+                            Login as guest
+                        </Button>
+                    </form>
+                </div>
             </div>
         );
     }
