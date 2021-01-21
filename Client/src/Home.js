@@ -12,7 +12,6 @@ class Home extends Component {
 
         this.handleOnClick = this.handleOnClick.bind(this); 
         this.logout = this.logout.bind(this); 
-        this.handleEdit = this.handleEdit.bind(this); 
         this.handleDelete = this.handleDelete.bind(this); 
     }
 
@@ -22,10 +21,6 @@ class Home extends Component {
         event.preventDefault(); 
     }
 
-    handleEdit(event){
-        this.setState({edit: true}); 
-        event.preventDefault(); 
-    }
 
     handleDelete(event){
         
@@ -45,8 +40,6 @@ class Home extends Component {
         
         else if(this.state.logout)
             return <Redirect to="/" />
-        else if(this.state.edit)
-            return <Redirect to="/Edit" />
         else if(this.state.delete)
             return <Redirect to="/Delete" />
         
@@ -58,7 +51,6 @@ class Home extends Component {
 
                 <div id="buttons">
                     <Button size="md" onClick={this.handleOnClick} inline>Add Entry</Button>
-                    <Button size="md" onClick={this.handleEdit} inline>Edit</Button>
                     <Button size="md" onClick={this.handleDelete} inline>Delete</Button>
                 </div>
             </div>

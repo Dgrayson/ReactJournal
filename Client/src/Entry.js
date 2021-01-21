@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import { Redirect } from 'react-router';
+import axios from 'axios'; 
 import './Style.css';
 
 class Entry extends Component {
@@ -28,7 +29,7 @@ class Entry extends Component {
     }
 
     async componentDidMount() {
-
+        axios.get();
     }
 
     render() {

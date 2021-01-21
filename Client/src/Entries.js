@@ -4,35 +4,38 @@ import './App.css';
 import {Table} from "react-bootstrap"; 
 import {Link} from "react-router-dom"; 
 import './Style.css';
+import axios from 'axios'; 
 
 class Entries extends Component {
 
     constructor(props){
         super(props); 
-        this.state = {entries: [
-            {id: 1, title: "Entry 1"}, 
-            { id: 2, title: "Entry 2" }, 
-            { id: 3, title: "Entry 3" }, 
-            { id: 4, title: "Entry 4" }, 
-            { id: 5, title: "Entry 5" }, 
-            { id: 6, title: "Entry 5" }, 
-            { id: 7, title: "Entry 5" }, 
-            { id: 8, title: "Entry 5" }, 
-            { id: 9, title: "Entry 5" }, 
-            { id: 10, title: "Entry 5" }, 
-        ]}; 
+        this.state = {entries: []}; 
+
     }
 
-    callAPI(){
-        fetch("http://localhost:9000/api")
-            .then(res => res.text())
-            .then(res => this.setState({ entries: res }));
+    async componentDidMount() {
+
+        let entriesList = []; 
+
+        await axios("http://localhost:9000/api")
+            .then(res => {
+                entriesList = res.data; 
+                this.setState({entries: entriesList}); 
+                console.log("Entries are " + entriesList); 
+                
+            })
+
+        console.log("Entries are " + entriesList); 
+        console.log("Component did mou8tn run"); 
     }
+
+
 
     renderTable(entry) {
         return (
             <tr key={entry.id}>
-                <td>{entry.id}</td>
+                <td><input type="checkbox" /></td>
                 <td><Link to={"/Entry"}>{entry.title}</Link></td>
             </tr>
         );
