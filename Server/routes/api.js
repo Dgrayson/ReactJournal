@@ -19,18 +19,23 @@ router.use(function(req, res, next){
 })
 
 router.get('/', function(req, res, next) {
-    res.json([{id: 1, title: 'Hello World'}, {id: 2, title: 'Goodbye world'}]); 
+    //res.json([{id: 1, title: 'Hello World'}, {id: 2, title: 'Goodbye world'}]); 
 
     console.log("Getting data"); 
 
-    /*
     connection.query('SELECT * FROM entries', function (err, rows, fields){
   
         if(err)
           console.log(err); 
       
-        console.log(rows); 
-      }); */
+
+          console.log(rows); 
+          
+          var string = JSON.stringify(rows); 
+          var json = JSON.parse(string); 
+          res.json(json); 
+          res.end(); 
+      });
 });
 
 module.exports = router; 

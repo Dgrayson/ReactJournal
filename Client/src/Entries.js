@@ -36,7 +36,7 @@ class Entries extends Component {
         return (
             <tr key={entry.id}>
                 <td><input type="checkbox" /></td>
-                <td><Link to={"/Entry"}>{entry.title}</Link></td>
+                <td><Link to={"/Entry"}>{entry.Title}</Link></td>
             </tr>
         );
     }
