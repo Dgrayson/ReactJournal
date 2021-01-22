@@ -19,16 +19,14 @@ router.use(function(req, res, next){
 })
 
 router.get('/', function(req, res, next) {
-    //res.json([{id: 1, title: 'Hello World'}, {id: 2, title: 'Goodbye world'}]); 
+  //res.json([{id: 1, Title: 'Hello World'}, {id: 2, Title: 'Goodbye world'}]); 
 
-    console.log("Getting data"); 
+  console.log("Getting data"); 
 
-    connection.query('SELECT * FROM entries', function (err, rows, fields){
-  
+  connection.query('Select * from entries', function (err, rows, fields){
         if(err)
           console.log(err); 
       
-
           console.log(rows); 
           
           var string = JSON.stringify(rows); 
@@ -36,6 +34,17 @@ router.get('/', function(req, res, next) {
           res.json(json); 
           res.end(); 
       });
+});
+
+router.post('/new', function (req, res){
+
+  var sql = 'INSERT INTO entries VALUES ?'
+
+  connection.query(sql, res, function(err, result){
+    if (err) throw err; 
+
+    console.log("Insert successful"); 
+  });
 });
 
 module.exports = router; 
