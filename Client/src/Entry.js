@@ -28,6 +28,20 @@ class Entry extends Component {
         event.preventDefault();
     }
 
+    handleSubmit(event){
+        event.preventDefault(); 
+
+        const entry = {
+            title: this.state.entry.title,
+            Entrytext: this.state.entry.description,
+        }
+
+        axios.post("http://localhost:9000/api", {entry})
+        .then(res => {
+            console.log(res); 
+        })
+    }
+
     async componentDidMount() {
         axios.get();
     }

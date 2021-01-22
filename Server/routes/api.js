@@ -36,14 +36,22 @@ router.get('/', function(req, res, next) {
       });
 });
 
-router.post('/new', function (req, res){
+router.post('/', function (req, res){
 
-  var sql = 'INSERT INTO entries VALUES ?'
+  console.log("*                    *\n**                  **\n***                ***\n****Recieving Data****\n***                ***\n**                  **\n*                    *"); 
+  var sql = 'INSERT INTO entries (title, EntryText, login_username) VALUES (?, ?, ?)';
 
-  connection.query(sql, res, function(err, result){
+  console.log(req.body); 
+  const newEntry = {
+    title: req.body.entry.title,
+    Entrytext: req.body.entry.Entrytext, 
+    userName: 'admin'
+  }
+
+  connection.query(sql, [newEntry.title, newEntry.Entrytext, newEntry.userName], function(err, result){
     if (err) throw err; 
 
-    console.log("Insert successful"); 
+    console.log("*                    *\n**                  **\n***                ***\n****Insert success****\n***                ***\n**                  **\n*                    *"); 
   });
 });
 

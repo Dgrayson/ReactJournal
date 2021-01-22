@@ -2,18 +2,20 @@ import React, { Component } from 'react';
 import './Style.css'; 
 import { Redirect , withRouter} from 'react-router';
 import {Form, FormControl, Button} from 'react-bootstrap'; 
+import axios from 'axios'; 
 
 class NewEntry extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { title: "", description: "", submitted: false , goBack: false};
+    this.state = { title: "test", description: "test", submitted: false , goBack: false};
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this); 
     this.handleTitleChange = this.handleTitleChange(this); 
     this.handleDescriptionChange = this.handleDescriptionChange(this); 
   }
+
 
   handleTitleChange(e){
 
@@ -31,9 +33,22 @@ class NewEntry extends Component {
   }
 
   handleSubmit(event) {
-    console.log("ahndling se");
-    this.setState({ submitted: true });
     event.preventDefault();
+    console.log("ahndling se");
+    
+    const entry = {
+      title: this.state.title,
+      Entrytext: this.state.description,
+    }
+
+    console.log("Current Entry is: " + entry.title); 
+
+    axios.post("http://localhost:9000/api", {entry})
+    .then(res => {
+        console.log("Posting data: " + entry.title); 
+    })
+
+    //this.setState({ submitted: true });
   }
 
   handleOnClick(event){
