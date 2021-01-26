@@ -39,16 +39,15 @@ router.get('/', function(req, res, next) {
 router.post('/', function (req, res){
 
   console.log("*                    *\n**                  **\n***                ***\n****Recieving Data****\n***                ***\n**                  **\n*                    *"); 
-  var sql = 'INSERT INTO entries (title, EntryText, login_username) VALUES (?, ?, ?)';
+  var sql = 'INSERT INTO entries (title, EntryText) VALUES (?, ?)';
 
   console.log(req.body); 
   const newEntry = {
     title: req.body.entry.title,
     Entrytext: req.body.entry.Entrytext, 
-    userName: 'admin'
   }
 
-  connection.query(sql, [newEntry.title, newEntry.Entrytext, newEntry.userName], function(err, result){
+  connection.query(sql, [newEntry.title, newEntry.Entrytext], function(err, result){
     if (err) throw err; 
 
     console.log("*                    *\n**                  **\n***                ***\n****Insert success****\n***                ***\n**                  **\n*                    *"); 

@@ -12,21 +12,21 @@ class NewEntry extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this); 
-    this.handleTitleChange = this.handleTitleChange(this); 
-    this.handleDescriptionChange = this.handleDescriptionChange(this); 
+    //this.handleTitleChange = this.handleTitleChange(this); 
+    //this.handleDescriptionChange = this.handleDescriptionChange(this); 
   }
 
 
-  handleTitleChange(e){
-
+  handleTitleChange(e)
+  {
+    this.setState({title: e.target.value}); 
   }
 
   handleDescriptionChange(e){
-
+    this.setState({description: e.target.value}); 
   }
 
   checkProps(newProps){
-
     console.log(newProps.location.title); 
     if(null != newProps)  
       this.setState({entry: newProps}); 
@@ -35,7 +35,7 @@ class NewEntry extends Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log("ahndling se");
-    
+
     const entry = {
       title: this.state.title,
       Entrytext: this.state.description,
@@ -47,8 +47,6 @@ class NewEntry extends Component {
     .then(res => {
         console.log("Posting data: " + entry.title); 
     })
-
-    //this.setState({ submitted: true });
   }
 
   handleOnClick(event){
@@ -68,7 +66,8 @@ class NewEntry extends Component {
         <Form.Group>
           <Form.Label inline>Title
           </Form.Label>
-          <Form.Control as="input" inline defaultValue={this.state.title}></Form.Control>
+          
+          <input defaultValue={this.state.title} onChange={this.handleTitleChange.bind(this)}/>
         </Form.Group>
         <Form.Group>
           <Form.Label>
@@ -76,7 +75,7 @@ class NewEntry extends Component {
 
             
           </Form.Label>
-          <Form.Control as="textarea" rows="5" defaultValue={this.state.description} onChange={this.handleDescriptionChange}></Form.Control>
+          <Form.Control as="textarea" rows="5" defaultValue={this.state.description} onChange={this.handleDescriptionChange.bind(this)}></Form.Control>
         </Form.Group>
         <input className = "btn btn-primary" type="submit" value="Submit" />
         <Button onClick={this.handleOnClick}>Go Back</Button>
