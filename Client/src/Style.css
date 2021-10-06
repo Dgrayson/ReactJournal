@@ -1,0 +1,60 @@
+.Form{
+    text-align: center;
+    font-size: 2em;
+    width: 75%; 
+    margin: 2em auto; 
+    border: 3px rgb(72, 151, 177) solid;
+    border-radius: 5px;
+    padding: 20px; 
+
+}
+
+.home{
+    text-align: center; 
+    height: 100vh;
+}
+
+#addButton{
+    width: 50%;
+}
+
+.entry{
+    text-align: center; 
+    border: 3px solid #3E8989;; 
+    border-radius: 3px;
+    width: 75%;
+    margin: auto; 
+    background-color: #1d419e;
+    height: 100vh;
+}
+
+.Login
+{
+    margin: auto; 
+    border: 2px solid blue; 
+    border-radius: 2px; 
+    padding: 50px; 
+    background-color: #656a74;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+#app{
+    width: 60%; 
+    margin: auto;
+    background-color: white;
+}
+
+#buttons{
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+p{
+    font-size: 22pt;
+    text-align: left;
+}
