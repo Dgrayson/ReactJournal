@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import '../App.css';
 import {Table} from "react-bootstrap"; 
 import {Link} from "react-router-dom"; 
@@ -10,12 +10,24 @@ const Entries = () => {
     const [entriesList, setEntries] = useState([])
 
     const renderTable = (entry) => {
-        return (
-            <tr key={entry.id}>
-                <td><span><Link to="/entry/:id">{entry.title}</Link></span></td>
-            </tr>
-        )
+        // return (
+        //     <tr key={entry.id}>
+        //         <td><span><Link to="/entry/:id">{entry.title}</Link></span></td>
+        //     </tr>
+        // )
     }
+
+    useEffect(() => {
+        axios("http://localhost:3001/api/entries")
+            .then(res => {
+                setEntries(res.data)       
+                console.log("Setting entries")          
+            }).catch(
+                error => {if(error.response){
+                console.log(error.response.data); 
+            }
+        }); 
+    })
 
     return (
         <div id="table">
@@ -25,9 +37,7 @@ const Entries = () => {
                         <th>Title</th>
                     </tr>
 
-                    {entriesList.map(entry =>
-                        this.renderTable(entry)                           
-                    )}
+                    {entriesList.map(entry => this.renderTable(entry.entry))}
 
                 </tbody>
             </Table>

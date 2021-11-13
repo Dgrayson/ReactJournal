@@ -1,8 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var MongoClient = require('mongodb').MongoClient; 
+const MongoClient = require('mongodb').MongoClient; 
 
+const connectionString = require('./secret')
 
 var db; 
 var entriesCollection; 
@@ -21,15 +22,17 @@ router.use(function(req, res, next){
   next(); 
 })
 
-router.get('/', function(req, res, next) {
+router.get('/entries', function(req, res, next) {
   console.log("*                    *\n**                  **\n***                ***\n**** Getting Data ****\n***                ***\n**                  **\n*                    *"); 
   
   db.collection('Entries').find().toArray()
   .then(results => {
+    console.log("Results are " + JSON.stringify(results));
 
-    res = JSON.stringify(results);
-
-    console.log("Results are " + res);
+    res.send(JSON.stringify(results))
+  })
+  .catch((error) => {
+    console.log(error);
   }); 
 
 
