@@ -27,7 +27,7 @@ const Entries = () => {
                 console.log(error.response.data); 
             }
         }); 
-    })
+    }, [])
 
     return (
         <div id="table">
@@ -37,7 +37,10 @@ const Entries = () => {
                         <th>Title</th>
                     </tr>
 
-                    {entriesList.map(entry => this.renderTable(entry.entry))}
+                    {
+                        if(entriesList !== undefined)
+                            entriesList.map(entry => this.renderTable(entry.entry))
+                    }
 
                 </tbody>
             </Table>

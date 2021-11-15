@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import { Redirect } from 'react-router';
+import { useState } from 'react';
 import axios from 'axios'; 
 import '../Style.css';
 
 const Entry = () => {
+
+    const [title, setTitle] = useState('')
+    const [text, setText] = useState('')
+    const [edit, setEdit] = useState(false)
+    const [home, setHome] = useState(false)
     
     const handleOnClick = (e) => {
-        console.log(e.target.name); 
-
         if(e.target.name === 'edit')
-            this.setState({edit: true}); 
+            setEdit(true)
         else if(e.target.name === 'back')
-            this.setState({home: true}); 
+            setHome(true)
 
         e.preventDefault();
     }
@@ -21,8 +25,8 @@ const Entry = () => {
         e.preventDefault(); 
 
         const entry = {
-            title: this.state.entry.title,
-            Entrytext: this.state.entry.description,
+            title: title,
+            Entrytext: text
         }
 
         axios.post("http://localhost:3001/api", {entry})
@@ -30,23 +34,19 @@ const Entry = () => {
             console.log(res); 
         })
     }
-    
-    
-    const entry = this.state.entry
 
-    console.log(this.state.edit); 
-    if(this.state.edit)
-        return <Redirect to={{pathname: '/Edit', state:{entry}}} />
-    else if(this.state.home)
+    if(edit)
+        return <Redirect to="/Edit" />
+    else if(home)
         return <Redirect to="/Home" />
     else{
         return (
             <div className="entry">
-                <h1>{entry.title}</h1>
+                <h1>{title}</h1>
                 
                 <hr />
                 <p>
-                    {entry.description}
+                    {text}
                 </p>
 
                 <Button variant="primary" onClick={handleOnClick} name="edit">
