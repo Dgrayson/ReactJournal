@@ -7,27 +7,31 @@ import axios from 'axios';
 
 
 const Entries = () => {
+    const [loading, setLoading] = useState(true)
     const [entriesList, setEntries] = useState([])
 
     const renderTable = (entry) => {
-        // return (
-        //     <tr key={entry.id}>
-        //         <td><span><Link to="/entry/:id">{entry.title}</Link></span></td>
-        //     </tr>
-        // )
+        return (
+            <tr key={entry.id}>
+                <td><span><Link to="/entry/">{entry.title}</Link></span></td>
+            </tr>
+        )
     }
 
     useEffect(() => {
         axios("http://localhost:3001/api/entries")
-            .then(res => {
-                setEntries(res.data)       
-                console.log("Setting entries")          
-            }).catch(
-                error => {if(error.response){
-                console.log(error.response.data); 
+        .then(res => {
+            setEntries(res.data)       
+            setLoading(false)    
+        }).catch(
+            error => {if(error.response){
+            console.log(error.response.data); 
             }
         }); 
     }, [])
+
+    if(loading)
+        return <h1>Loading...</h1>
 
     return (
         <div id="table">
@@ -37,11 +41,7 @@ const Entries = () => {
                         <th>Title</th>
                     </tr>
 
-                    {
-                        if(entriesList !== undefined)
-                            entriesList.map(entry => this.renderTable(entry.entry))
-                    }
-
+                    {entriesList.map(entry => renderTable(entry.entry))}
                 </tbody>
             </Table>
 
